@@ -1,0 +1,12 @@
+
+
+.add-item{
+    display: flex;
+    flex-direction: column;
+  height: 8rem;
+  
+}
+.input{
+    height: 2rem;
+    margin-bottom: 1rem;
+}
