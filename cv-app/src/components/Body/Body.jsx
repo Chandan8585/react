@@ -8,7 +8,7 @@ const sections  = {
     workExp: "Work Experience",
     project: "Projects",
     education: "Education",
-    achievement: "Achievements",
+    achievements: "Achievements",
     summary: "Summary",
     other: "Other",
 };
@@ -22,8 +22,8 @@ const sections  = {
                     <span
                     key={item} 
                     style={{backgroundColor: item}}
-                    className={styles.color}/>
-                    
+                    className={styles.color}></span>
+                  
                 ))
             }
         </div>

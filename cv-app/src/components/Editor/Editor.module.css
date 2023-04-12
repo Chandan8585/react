@@ -82,7 +82,7 @@
     cursor: pointer;
   }
   
-  .chip {
+  .chip{
     display: flex;
     gap: 5px;
     align-items: center;
