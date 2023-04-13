@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { X } from "react-feather";
 import styles from "./Editor.module.css"
 import { useState } from 'react';
@@ -6,7 +6,15 @@ import InputControl from '../inputControl/inputControl';
 
 const Editor = (props) => {
     const sections = props.sections;
+    const information = props.information;
     const [activeSectionKey, setActiveSectionKey] = useState(Object.keys(sections)[0]);
+
+const [activeInfromation, setActiveInformation] = useState(
+    information[sections[Object.keys(sections)[0]]]
+);
+const [sectionTitle , setSectionTitle] = useState(
+  sections[Object.keys(sections)[0]]
+);
 
 const workExpBody = (
 <div className={styles.detail}>
@@ -198,7 +206,16 @@ const projectBody = (
       return otherBody;
       default: return null;
     }
-  }
+  };
+
+  useEffect(()=>{
+    
+ setActiveInformation(information[sections[activeSectionKey]]);
+ setSectionTitle(sections[activeSectionKey]);
+  },[activeSectionKey]);
+
+
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -212,18 +229,25 @@ const projectBody = (
       </div>
       <div className={styles.body}>
        
-          <InputControl label="Title" placeholder="Enter Section Title"/>
-
+          <InputControl
+           label="Title" 
+           placeholder="Enter Section Title"
+           value={sectionTitle}
+           onChange={(event)=> setSectionTitle(event.target.value)}
+           />
+      
            <div className={styles.chips}>
-            <div className={styles.chip}>
-              <p>Project 1</p>
-              <X/>
-               </div>
-              <div className={styles.chip}>
-              <p>Project 2</p>
-              <X/>
-            </div>
-          </div>
+
+              {
+                activeInfromation?.details ? 
+                activeInfromation?.details?.map((item, index)=> (
+                  <div className={styles.chip} key={item.title+ index}>
+                              <p>{sections[activeSectionKey]} {index+1}</p>
+                              <X/>
+                  </div>
+                ))
+                : ""}
+              </div>
           {generateBody()}
         </div>
       
