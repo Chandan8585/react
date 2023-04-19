@@ -7,7 +7,8 @@ import InputControl from '../inputControl/inputControl';
 const Editor = (props) => {
     const sections = props.sections;
     const information = props.information;
-    const [activeSectionKey, setActiveSectionKey] = useState(Object.keys(sections)[0]);
+
+const [activeSectionKey, setActiveSectionKey] = useState(Object.keys(sections)[0]);
 
 const [activeInfromation, setActiveInformation] = useState(
     information[sections[Object.keys(sections)[0]]]
@@ -15,27 +16,39 @@ const [activeInfromation, setActiveInformation] = useState(
 const [sectionTitle , setSectionTitle] = useState(
   sections[Object.keys(sections)[0]]
 );
+const [values, setValues] = useState({
+  name:activeInfromation?.detail?.name || "", 
+  title:activeInfromation?.detail?.title || "", 
+  linkedIn:activeInfromation?.detail?.linkedin || "", 
+  github:activeInfromation?.detail?.github || "",
+  phone:activeInfromation?.detail?.phone || "", 
+  email:activeInfromation?.detail?.email || "", 
 
+});
 const workExpBody = (
 <div className={styles.detail}>
   <div className={styles.row}>
     <InputControl 
     label="Title"
     placeholder = "Enter title eg. Frontend devloper"
+    defaultValue = {values.title}
     />
 <InputControl
 label="Company Name"
 placeholder="Enter title eg. amazon"
+defaultValue={values.companyName}
 />
   </div>
   <div className={styles.row}>
     <InputControl 
     label="Certificate Link"
     placeholder="Enter certificate link"
+    defaultValue={values.certificateLink}
     />
     <InputControl
     label="Location"
     placeholder="Enter certificate link"
+    defaultValue={values.location}
     />
   </div>
   <div className={styles.row}>
@@ -43,18 +56,26 @@ placeholder="Enter title eg. amazon"
     label="Start Date"
     type="date"
     placeholder="Enter start date of work"
+    defaultValue={values.startDate}
     />
     <InputControl
     label="End Date"
     type="date"
     placeholder="Enter end date of work"
+    defaultValue= {values.endDate}
     />
   </div>
   <div className={styles.column}>
       <label>Enter work description</label>
-      <InputControl placeholder="Line 1"/>
-      <InputControl placeholder="Line 2"/>
-      <InputControl placeholder="Line 3"/>
+      <InputControl placeholder="Line 1"
+      defaultValue = {values.points ? values.points[0] : ""}
+      />
+      <InputControl placeholder="Line 2"
+      defaultValue = {values.points ? values.points[1] : ""}
+      />
+      <InputControl placeholder="Line 3"
+      defaultValue = {values.points ? values.points[2] : ""}
+      />
   </div>
 </div>
 );
@@ -63,30 +84,43 @@ const projectBody = (
     <div className={styles.row}>
       <InputControl 
       label="Title"
+      defaultValue = {values.title}
       placeholder = "Enter title eg. Chat app"
       />
+
   <InputControl
   label="Overview"
   placeholder="Enter basic overview of project"
+  defaultValue = {values.overview}
   />
     </div>
     <div className={styles.row}>
       <InputControl 
       label="Deployed Link"
+      defaultValue = {values.link}
       placeholder="Enter deployed link"
       />
       <InputControl
       label="Github Link"
       placeholder="Enter github link of Project"
+      defaultValue={values.github}
       />
     </div>
   
     <div className={styles.column}>
         <label>Enter work description</label>
-        <InputControl placeholder="Line 1"/>
-        <InputControl placeholder="Line 2"/>
-        <InputControl placeholder="Line 3"/>
-        <InputControl placeholder="Line 4"/>
+        <InputControl placeholder="Line 1"
+        defaultValue={values.points ? values.points[0]:""}
+        />
+        <InputControl placeholder="Line 2"
+        defaultValue={values.points ? values.points[1]:""}
+        />
+        <InputControl placeholder="Line 3"
+        defaultValue={values.points ? values.points[2]:""}
+        />
+        <InputControl placeholder="Line 4"
+        defaultValue={values.points ? values.points[3]:""}
+        />
     </div>
   </div>
   );
@@ -96,10 +130,12 @@ const projectBody = (
         <InputControl 
         label="Title"
         placeholder = "Enter title eg. Btech"
+        defaultValue = {values.title}
         />
     <InputControl
     label="College/School Name"
     placeholder="Enter Name of your School / College"
+    defaultValue={values.college}
     />
       </div>
       <div className={styles.row}>
@@ -107,10 +143,12 @@ const projectBody = (
         label="Start Date"
         type="date"
         placeholder="Enter Session Starting Date"
+        defaultValue={values.startDate}
         />
         <InputControl
         label="End Date"
         placeholder="Enter Session Ending Date"
+        defaultValue= {values.endDate}
         />
       </div>
   
@@ -130,22 +168,26 @@ const projectBody = (
       </div>
       <div className={styles.row}>
         <InputControl 
-        label="Linkedin Link"
-        placeholder="Enter your LinkedIn Profile link"
+        label="Name"
+        placeholder="Enter your full name eg. Ashu"
+        defaultValue={values.name}
         />
         <InputControl
-        label="Github Link"
-        placeholder="Enter your github Profile link"
+        label="Title"
+        placeholder="Enter your title"
+        defaultValue={values.title}
         />
       </div>
       <div className={styles.row}>
         <InputControl 
         label="Email ID"
         placeholder="Enter your Email Id"
+        defaultValue={values.email}
         />
         <InputControl
         label="Enter Phone"
         placeholder="Enter your phone Number"
+        defaultValue={values.phone}
         />
       </div>
     
@@ -249,6 +291,7 @@ const projectBody = (
                 : ""}
               </div>
           {generateBody()}
+          <button>Save</button>
         </div>
       
     </div>
