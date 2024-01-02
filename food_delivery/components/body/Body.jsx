@@ -3,6 +3,7 @@ import "./Body.css";
 import RestrauntCard from './card/RestrauntCard';
 import Shimmer from './shimmer/shimmer';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 const Body = () => {
   const [Loading, setLoading] = useState(false);
   const [restaurantData, SetRestaurantData] = useState([]);
@@ -19,7 +20,7 @@ const [Error, setError] = useState("");
     const data = await axios.get("https://nomad-nest-backend.onrender.com/api/hotels");
 
     // const result = data?.data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    SetRestaurantData(data.data);
+    SetRestaurantData(data?.data);
     // setFilteredHotel(data.data);
     // SetRestaurantData(data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     // SetRestaurantData(data?.data?.cards[2]?.data?.data?.cards);
@@ -47,11 +48,11 @@ const [Error, setError] = useState("");
   {console.log(restaurantData)}
    { <div className='restaurant_cards_container'>
         {
-          filteredHotel.length===0 ? ( /**<Shimmer/>:*/    restaurantData?.map((restaurant) => {
-            return ( <RestrauntCard  hotel={restaurant} key={restaurant.id}/> );
+          filteredHotel.length===0 ? (  restaurantData?.map((restaurant) => {
+            return (<Link key={restaurant.id} to={`hotels/${restaurant._id}`}><RestrauntCard  hotel={restaurant} /></Link>  );
            }   )) : (
             filteredHotel?.map((restaurant) => {
-           return ( <RestrauntCard  hotel={restaurant} key={restaurant.id}/> );
+           return ( <Link key={restaurant.id} to={`hotels/${restaurant._id}`}><RestrauntCard  hotel={restaurant} /></Link> );
           }   )
           )
         } 
