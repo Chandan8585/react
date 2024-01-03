@@ -16,7 +16,7 @@ class Profile extends React.Component {
           count: prevState.count + 1,
         }));
     }
-    console.log("child component did update");
+    console.log("child component did updated");
   }
 
   componentDidMount() {
