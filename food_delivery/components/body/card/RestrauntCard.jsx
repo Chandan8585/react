@@ -6,13 +6,13 @@ const RestrauntCard = ({hotel}) => {
     <div className="restaurant-card">
       <img
         className="restaurant-image"
-        src={hotel.image}// Replace with your actual image source
+        src={hotel?.image}// Replace with your actual image source
         alt="Restaurant"
       />
       <div className="restaurant-info">
-        <h2 className="restaurant-name">{hotel.name}</h2>
+        <h2 className="restaurant-name">{hotel?.name}</h2>
         <p className="restaurant-description">
-          {hotel.category}
+          {hotel?.category}
         </p>
         <div className="restaurant-details">
           <span className="restaurant-rating">Rating: 4.5</span>
