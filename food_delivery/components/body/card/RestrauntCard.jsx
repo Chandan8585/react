@@ -1,18 +1,18 @@
 import React from 'react';
 import './RestrauntCard.css'; // Import your CSS file if separate
 
-const RestrauntCard = ({hotel}) => {
+const RestrauntCard = ({item}) => {
   return (
     <div className="restaurant-card">
       <img
         className="restaurant-image"
-        src={hotel?.image}// Replace with your actual image source
+        src={item?.image}// Replace with your actual image source
         alt="Restaurant"
       />
       <div className="restaurant-info">
-        <h2 className="restaurant-name">{hotel?.name}</h2>
+        <h2 className="restaurant-name">{item?.name}</h2>
         <p className="restaurant-description">
-          {hotel?.category}
+          {item?.category}
         </p>
         <div className="restaurant-details">
           <span className="restaurant-rating">Rating: 4.5</span>
