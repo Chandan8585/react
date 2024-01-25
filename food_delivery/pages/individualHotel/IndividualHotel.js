@@ -3,24 +3,24 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export const IndividualHotel = () => {
-  const [detail, setDetail] = useState({});
+  const [detail, setDetail] = useState([]);
   const params = useParams();
+  useEffect(() => {
+    getHotelPage();
+  }, [params?._id]);
 
   async function getHotelPage() {
     try {
       const data = await axios.get(
-        `https://nomad-nest-backend.onrender.com/api/hotels/${params._id}`
+        `https://nomad-nest-backend.onrender.com/api/hotels/${params?._id}`
       );
       setDetail(data?.data); // Assuming the necessary data is in data.data
-      console.log(data.data);
+      console.log(data?.data);
     } catch (error) {
       console.error("Error fetching hotel details:", error);
     }
   }
 
-  useEffect(() => {
-    getHotelPage();
-  }, [params.id]); // Added params.id to the dependency array
 
   return (
     <>

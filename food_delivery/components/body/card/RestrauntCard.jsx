@@ -1,10 +1,16 @@
 import React from 'react';
 import './RestrauntCard.css'; // Import your CSS file if separate
-
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 const RestrauntCard = ({item}) => {
+ 
+  const handleAddToCart = (id)=> {
+      cart.push(id);
+  }
   return (
     <div className="restaurant-card">
-      <img
+      <Link to={`hotels/${item._id}`}>
+        <img
         className="restaurant-image"
         src={item?.image}// Replace with your actual image source
         alt="Restaurant"
@@ -18,7 +24,12 @@ const RestrauntCard = ({item}) => {
           <span className="restaurant-rating">Rating: 4.5</span>
           <span className="restaurant-price">Price: $$</span>
         </div>
+    
       </div>
+      </Link>
+      <div onClick={()=>handleAddToCart(item._id)}>
+          <button>Add to Cart</button>
+        </div>
     </div>
   );
 };

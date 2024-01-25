@@ -20,10 +20,10 @@ const appRouter = createBrowserRouter([
         path:"/",
         element: <Body/>,
       },
-      // {
-      //   path: "/about",
-      //   element: <About/>,
-      // },
+      {
+        path:"/about",
+        element: <About/>,
+      },
       {
         path: "/hotels/:_id",
         element: <IndividualHotel/>,

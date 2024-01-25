@@ -1,7 +1,9 @@
 import React from "react";
 import "./navbar.css";
 import {Link} from "react-router-dom";
-const Navbar= ()=> {
+import { useSelector } from "react-redux";
+const Navbar= ()=> {  
+    const cart = useSelector((store)=> store.cart.items);
  return(
     <nav>
     <div className="logo">
@@ -18,7 +20,7 @@ const Navbar= ()=> {
       
         <i className="material-icons">shopping_cart</i>
 
-        <span>0</span> 
+        <span>{cart.length} ok</span> 
     </div>
 </nav>
  )
